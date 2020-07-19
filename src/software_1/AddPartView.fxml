@@ -32,12 +32,11 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TextField disable="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="addPartId" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="addPartName" promptText="Part Name" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="addPartInv" promptText="Inv" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id="addPartPrice" promptText="Price / Cost" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <TextField fx:id="addPartMax" promptText="Max" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField fx:id="addPartCompanyName" promptText="Comp Name" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <TextField fx:id="addPartMin" promptText="Min" GridPane.columnIndex="3" GridPane.rowIndex="5">
                <GridPane.margin>
                   <Insets right="20.0" />
@@ -56,9 +55,12 @@
             <Label text="Inv" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
             <Label text="Price / Cost" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
             <Label text="Max" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-            <Label text="Company Name" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
-            <RadioButton fx:id="addPartInHouse" mnemonicParsing="false" text="In-House" GridPane.columnIndex="1" />
-            <RadioButton fx:id="addPartOutsourced" mnemonicParsing="false" text="Outsourced" GridPane.columnIndex="2" />
+            <Label fx:id="addPartCompanyNameLabel" text="Company Name" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+            <TextField fx:id="addPartCompanyName" promptText="Comp Name" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Label fx:id="addPartMachineIDLabel" text="Machine ID" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+            <TextField fx:id="addPartMachineID" promptText="Machine ID" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <RadioButton fx:id="addPartInHouse" mnemonicParsing="false" onAction="#inHouseAction" text="In-House" GridPane.columnIndex="1" />
+            <RadioButton fx:id="addPartOutsourced" mnemonicParsing="false" onAction="#outsourcedAction" text="Outsourced" GridPane.columnIndex="2" />
             <Button mnemonicParsing="false" onAction="#save" text="Save" GridPane.columnIndex="2" GridPane.rowIndex="7" />
             <ButtonBar prefHeight="40.0" prefWidth="200.0" />
             <Button mnemonicParsing="false" onAction="#cancel" text="Cancel" GridPane.columnIndex="3" GridPane.rowIndex="7" />

@@ -9,9 +9,10 @@ package software_1;
  *
  * @author eric
  */
-public class Part {
-    
-private int id ;
+public abstract class Part {
+
+private int id;
+private static int nextId = 0;
 private String name;
 private double price;
 private int stock;
@@ -19,8 +20,9 @@ private int min;
 private int max;
 
 
-Part(int id, String name, double price, int stock, int min, int max) {
-        this.id = id;
+Part(String name, double price, int stock, int min, int max) {
+        this.id = nextId;
+        this.nextId++;
         this.name = name;
         this.price = price;
         this.stock = stock;
@@ -30,6 +32,10 @@ Part(int id, String name, double price, int stock, int min, int max) {
 
     public int getId() {
         return id;
+    }
+    
+    public static int getNextId() {
+        return nextId;
     }
 
     public void setId(int id) {

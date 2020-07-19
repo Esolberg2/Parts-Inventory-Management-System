@@ -21,14 +21,14 @@ public class Inventory {
     
     
     Inventory() {
-        allParts.add(new Part(1, "screw", .05, 25, 1000, 100));
-        allParts.add(new Part(1, "bolt", 1.05, 10, 20, 32));
-        allParts.add(new Part(1, "nail", 2.00, 4, 16, 1));
+        allParts.add(new InHouse("screw", .05, 25, 1000, 100, 1));
+        allParts.add(new Outsourced("bolt", 1.05, 10, 20, 32, "IBM"));
+        allParts.add(new Outsourced("nail", 2.00, 4, 16, 1, "Home Depot"));
             
         
-        allProducts.add(new Product(1, "screw assm", 1.00, 25, 30, 225));
-        allProducts.add(new Product(1, "bolt assm", 1.12, 10, 20, 600));
-        allProducts.add(new Product(1, "screen assm", 1.99, 12, 111, 75));
+        allProducts.add(new Product("screw assm", 1.00, 25, 30, 225));
+        allProducts.add(new Product("bolt assm", 1.12, 10, 20, 600));
+        allProducts.add(new Product("screen assm", 1.99, 12, 111, 75));
     }
     
     public void addPart(Part part) {
