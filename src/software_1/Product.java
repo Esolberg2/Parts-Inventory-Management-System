@@ -6,7 +6,7 @@
 package software_1;
 
 
-import Software_1.*;
+//import Software_1.*;
 import java.lang.*;
 import java.util.*;
 import javafx.scene.*;
