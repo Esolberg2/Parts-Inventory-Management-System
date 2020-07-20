@@ -121,8 +121,6 @@ public class FXMLDocumentController implements Initializable {
         productName.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
         productStock.setCellValueFactory(new PropertyValueFactory<Product, Integer>("stock"));
         productPrice.setCellValueFactory(new PropertyValueFactory<Product, Double>("price"));
-          
-//        tableView.getItems().setAll(parseUserList());
         productTableView.setItems(allProducts);
     }
     

@@ -26,13 +26,17 @@ public class Inventory {
         allParts.add(new Outsourced("nail", 2.00, 4, 16, 1, "Home Depot"));
             
         
-        allProducts.add(new Product("screw assm", 1.00, 25, 30, 225));
-        allProducts.add(new Product("bolt assm", 1.12, 10, 20, 600));
-        allProducts.add(new Product("screen assm", 1.99, 12, 111, 75));
+//        allProducts.add(new Product("screw assm", 1.00, 25, 30, 225));
+//        allProducts.add(new Product("bolt assm", 1.12, 10, 20, 600));
+//        allProducts.add(new Product("screen assm", 1.99, 12, 111, 75));
     }
     
     public void addPart(Part part) {
         allParts.add(part);
+    };
+    
+    public void addProduct(Product product) {
+        allProducts.add(product);
     };
     
     

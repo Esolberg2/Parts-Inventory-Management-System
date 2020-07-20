@@ -23,7 +23,7 @@ public class Product {
     
     // producttID, productName, productInventory, productPrice, productMachineID, productMax, productMin, productInHouse, productOutSourced
 
-    private ObservableList<Part> associatedParts;
+    private ObservableList<Part> associatedParts; // when "add" is pressed, the part from the part list should be added here.
     private int id;
     private static int nextId = 0;
     private String name;
@@ -32,7 +32,7 @@ public class Product {
     private int min;
     private int max;
 
-    public Product(String name, double price, int stock, int min, int max) {
+    public Product(String name, double price, int stock, int min, int max, ObservableList parts) {
         this.id = nextId;
         this.nextId++;
         this.name = name;
@@ -40,6 +40,9 @@ public class Product {
         this.stock = stock;
         this.min = min;
         this.max = max;
+        this.associatedParts = parts;
+        
+        System.out.println("product created");
     }
 
 
@@ -47,8 +50,9 @@ public class Product {
         return associatedParts;
     }
 
-    public void setAssociatedParts(ObservableList<Part> associatedParts) {
-        this.associatedParts = associatedParts;
+    public void addAssociatedParts(Part part) {
+//        this.associatedParts = associatedParts;
+        this.associatedParts.add(part);
     }
 
     public int getId() {

@@ -117,18 +117,7 @@ public class AddPartViewController implements Initializable {
         }
         
     }
-    
-//    @FXML
-//    private void save(ActionEvent event) throws IOException {
-////        String id = ((Button)event.getSource()).getId();
-//        Parent parent = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-//        Scene main = new Scene(parent);
-//        
-//        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-//        
-//        window.setScene(main);
-//        window.show();
-//    }
+
     
     @FXML private TextField addPartId;
     @FXML private TextField addPartName;
