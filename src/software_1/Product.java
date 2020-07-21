@@ -21,8 +21,6 @@ import javafx.collections.ObservableList;
  */
 public class Product {
     
-    // producttID, productName, productInventory, productPrice, productMachineID, productMax, productMin, productInHouse, productOutSourced
-
     private ObservableList<Part> associatedParts; // when "add" is pressed, the part from the part list should be added here.
     private int id;
     private static int nextId = 0;
@@ -51,8 +49,11 @@ public class Product {
     }
 
     public void addAssociatedParts(Part part) {
-//        this.associatedParts = associatedParts;
         this.associatedParts.add(part);
+    }
+    
+    public void setAssociatedParts(ObservableList parts) {
+        this.associatedParts = parts;
     }
 
     public int getId() {

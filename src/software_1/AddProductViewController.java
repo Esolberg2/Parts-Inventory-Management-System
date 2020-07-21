@@ -7,9 +7,12 @@ package software_1;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,11 +20,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import static software_1.Inventory.allParts;
 import static software_1.Inventory.allProducts;
@@ -34,7 +40,11 @@ import static software_1.Inventory.allProducts;
 public class AddProductViewController implements Initializable {
     
     private ObservableList<Part> stagedParts = FXCollections.observableArrayList();
+    private FilteredList<Part> filteredStagedParts = new FilteredList<>(stagedParts, s -> true);
+    private FilteredList<Part> filteredParts = new FilteredList<>(allParts, s -> true);
     
+    @FXML private Text errorMessage;
+    @FXML private TextField addProductSearch;
     @FXML private TextField addProductId;
     @FXML private TextField addProductName;
     @FXML private TextField addProductInv;
@@ -57,40 +67,45 @@ public class AddProductViewController implements Initializable {
     
     @FXML
     private void cancel(ActionEvent event) throws IOException {
-//        String id = ((Button)event.getSource()).getId();
-        Parent parent = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-        Scene main = new Scene(parent);
-        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window.setScene(main);
-        window.show();
+
+        Alert alert = new Alert(Alert.AlertType.WARNING, 
+                            "Are you sure you want to cancel? All unsaved data will be lost?", 
+                            ButtonType.NO, ButtonType.YES);
+
+            Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == ButtonType.YES){
+                    Parent parent = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+                    Scene main = new Scene(parent);
+                    Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+                    window.setScene(main);
+                    window.show();
+                    
+                }
     }
     
     
     @FXML
     private void save(ActionEvent event) throws IOException {
-//        Part selected = partTableView.getSelectionModel().getSelectedItem();
+        if (stagedParts.size() > 0) {
+            
+            allProducts.add(new Product(
+                    addProductName.getText(),
+                    Double.parseDouble(addProductPrice.getText()),
+                    Integer.parseInt(addProductInv.getText()),
+                    Integer.parseInt(addProductMin.getText()),
+                    Integer.parseInt(addProductMax.getText()),
+                    stagedParts
+            ));
         
-        System.out.println(addProductName.getText());
-                System.out.println(addProductName.getText());
-                System.out.println(addProductInv.getText());
-                System.out.println(addProductPrice.getText());
-                System.out.println(addProductMax.getText());
-                System.out.println(addProductMin.getText());
-    //            allParts.add(new Outsourced("imported bolt", 1.05, 10, 20, 32, "IBM"));
-        allProducts.add(new Product(
-                addProductName.getText(),
-                Integer.parseInt(addProductInv.getText()),
-                Integer.parseInt(addProductPrice.getText()),
-                Integer.parseInt(addProductMax.getText()),
-                Integer.parseInt(addProductMin.getText()),
-                stagedParts
-        ));
-        
-        Parent parent = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-        Scene main = new Scene(parent);
-        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window.setScene(main);
-        window.show();
+            Parent parent = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+            Scene main = new Scene(parent);
+            Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            window.setScene(main);
+            window.show();
+        }
+        else {
+            errorMessage.setVisible(true);
+        }
                 
     }
     
@@ -99,22 +114,39 @@ public class AddProductViewController implements Initializable {
         Part selected = partTableView.getSelectionModel().getSelectedItem();
         if (selected != null && !stagedParts.contains(selected)) {
             stagedParts.add(selected);
-        }
-        System.out.println(selected);
-        System.out.println(stagedParts);      
+            errorMessage.setVisible(false);
+        }  
     }
     
     @FXML
     private void delete(ActionEvent event) throws IOException {
         Part selected = stagedPartTableView.getSelectionModel().getSelectedItem();
         if (selected != null && stagedParts.contains(selected)) {
-            stagedParts.remove(selected);
-        }
-        System.out.println(selected);
-        System.out.println(stagedParts);      
-    }
-        
+             Alert alert = new Alert(Alert.AlertType.WARNING, 
+                            "Are you sure you want to remove this part from the product?", 
+                            ButtonType.NO, ButtonType.YES);
 
+            Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == ButtonType.YES){
+                    stagedParts.remove(selected);
+                }
+        }     
+    }
+    
+    @FXML
+    private void search(ActionEvent event) throws IOException {
+        String substring = addProductSearch.getText();
+        filteredParts.setPredicate(
+            new Predicate<Part>(){
+                public boolean test(Part t){
+                    Boolean flag = Integer.toString(t.getId()).contains(substring) || t.getName().contains(substring);
+                    return flag;
+                }
+            }
+         );
+    }
+
+        
     /**
      * Initializes the controller class.
      */
@@ -131,7 +163,7 @@ public class AddProductViewController implements Initializable {
         partStock.setCellValueFactory(new PropertyValueFactory<Part, Integer>("stock"));
         partPrice.setCellValueFactory(new PropertyValueFactory<Part, Double>("price"));
           
-        partTableView.setItems(allParts);
+        partTableView.setItems(filteredParts);
         
         stagedPartId.setCellValueFactory(new PropertyValueFactory<Part, Integer>("id"));
         stagedPartName.setCellValueFactory(new PropertyValueFactory<Part, String>("name"));
@@ -139,6 +171,7 @@ public class AddProductViewController implements Initializable {
         stagedPartPrice.setCellValueFactory(new PropertyValueFactory<Part, Double>("price"));
           
         stagedPartTableView.setItems(stagedParts);
+
     }    
     
 }

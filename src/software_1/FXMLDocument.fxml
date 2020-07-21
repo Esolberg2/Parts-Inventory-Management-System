@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" style="-fx-background-color: #f0f0f0#f0f0f0 #f0f0f0#f0f0f0;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="software_1.FXMLDocumentController">
@@ -31,12 +32,12 @@
                   <Insets left="20.0" top="20.0" />
                </GridPane.margin>
             </Text>
-            <TextField style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-radius: 5;" GridPane.columnIndex="2" GridPane.valignment="TOP">
+            <TextField fx:id="mainPartSearch" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-radius: 5;" GridPane.columnIndex="2" GridPane.valignment="TOP">
                <GridPane.margin>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </GridPane.margin>
             </TextField>
-            <Button mnemonicParsing="false" style="-fx-background-color: #fafafa#fafafa; -fx-text-fill: black; -fx-background-radius: 5; -fx-border-radius: 5;" text="Search" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+            <Button mnemonicParsing="false" onAction="#searchParts" style="-fx-background-color: #fafafa#fafafa; -fx-text-fill: black; -fx-background-radius: 5; -fx-border-radius: 5;" text="Search" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
                <GridPane.margin>
                   <Insets right="30.0" top="12.0" />
                </GridPane.margin>
@@ -56,7 +57,7 @@
                <children>
                   <Button fx:id="addPartBtn" mnemonicParsing="false" onAction="#navToScene" style="-fx-background-color: #fafafa#fafafa; -fx-text-fill: black; -fx-background-radius: 5; -fx-border-radius: 5;" text="Add" />
                   <Button fx:id="modifyPartBtn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#navToScene" style="-fx-background-color: #fafafa#fafafa; -fx-text-fill: black; -fx-background-radius: 5; -fx-border-radius: 5;" text="Modify" />
-                  <Button layoutX="116.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: #fafafa#fafafa; -fx-text-fill: black; -fx-background-radius: 5; -fx-border-radius: 5;" text="Delete" />
+                  <Button layoutX="116.0" layoutY="10.0" mnemonicParsing="false" onAction="#deletePart" style="-fx-background-color: #fafafa#fafafa; -fx-text-fill: black; -fx-background-radius: 5; -fx-border-radius: 5;" text="Delete" />
                </children>
             </HBox>
          </children>
@@ -78,12 +79,12 @@
                   <Insets left="20.0" top="20.0" />
                </GridPane.margin>
             </Text>
-            <TextField style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-radius: 5;" GridPane.columnIndex="2" GridPane.valignment="TOP">
+            <TextField fx:id="mainProductSearch" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-radius: 5;" GridPane.columnIndex="2" GridPane.valignment="TOP">
                <GridPane.margin>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </GridPane.margin>
             </TextField>
-            <Button mnemonicParsing="false" style="-fx-background-color: #fafafa#fafafa; -fx-text-fill: black; -fx-background-radius: 5; -fx-border-radius: 5;" text="Search" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+            <Button mnemonicParsing="false" onAction="#searchProducts" style="-fx-background-color: #fafafa#fafafa; -fx-text-fill: black; -fx-background-radius: 5; -fx-border-radius: 5;" text="Search" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
                <GridPane.margin>
                   <Insets right="30.0" top="12.0" />
                </GridPane.margin>
@@ -103,10 +104,16 @@
                <children>
                   <Button fx:id="addProductBtn" mnemonicParsing="false" onAction="#navToScene" style="-fx-background-color: #fafafa#fafafa; -fx-text-fill: black; -fx-background-radius: 5; -fx-border-radius: 5;" text="Add" />
                   <Button fx:id="modifyProductBtn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#navToScene" style="-fx-background-color: #fafafa#fafafa; -fx-text-fill: black; -fx-background-radius: 5; -fx-border-radius: 5;" text="Modify" />
-                  <Button layoutX="116.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: #fafafa#fafafa; -fx-text-fill: black; -fx-background-radius: 5; -fx-border-radius: 5;" text="Delete" />
+                  <Button layoutX="116.0" layoutY="10.0" mnemonicParsing="false" onAction="#deleteProduct" style="-fx-background-color: #fafafa#fafafa; -fx-text-fill: black; -fx-background-radius: 5; -fx-border-radius: 5;" text="Delete" />
                </children>
             </HBox>
          </children>
       </GridPane>
+      <Button layoutX="761.0" layoutY="416.0" mnemonicParsing="false" onAction="#exit" style="-fx-background-color: #fafafa#fafafa #fafafa#fafafa; -fx-text-fill: black; -fx-background-radius: 5; -fx-border-radius: 5;" text="Exit" />
+      <Text layoutX="55.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inventory Management System">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

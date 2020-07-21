@@ -25,10 +25,6 @@ public class Inventory {
         allParts.add(new Outsourced("bolt", 1.05, 10, 20, 32, "IBM"));
         allParts.add(new Outsourced("nail", 2.00, 4, 16, 1, "Home Depot"));
             
-        
-//        allProducts.add(new Product("screw assm", 1.00, 25, 30, 225));
-//        allProducts.add(new Product("bolt assm", 1.12, 10, 20, 600));
-//        allProducts.add(new Product("screen assm", 1.99, 12, 111, 75));
     }
     
     public void addPart(Part part) {
@@ -47,13 +43,5 @@ public class Inventory {
         }
         return results;
     };
-
-//    public List getAllParts() {
-//        List results = new ArrayList();
-//        for (Part2 element: allParts) {
-//            results.add(element.name);
-//        }
-//        return results;
-//    };
     
 }

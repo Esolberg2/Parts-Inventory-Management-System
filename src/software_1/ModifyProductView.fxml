@@ -12,6 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" prefHeight="655.0" prefWidth="862.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="software_1.ModifyProductViewController">
    <children>
@@ -42,31 +43,31 @@
                      </font></Label>
                </children>
             </HBox>
-            <TextField disable="true" prefHeight="27.0" prefWidth="179.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField fx:id="modifyProductId" disable="true" prefHeight="27.0" prefWidth="179.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="5.0" />
                </GridPane.margin>
             </TextField>
-            <TextField promptText="Product Name" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <TextField fx:id="modifyProductName" promptText="Product Name" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="5.0" />
                </GridPane.margin>
             </TextField>
-            <TextField prefHeight="27.0" prefWidth="177.0" promptText="Inv" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <TextField fx:id="modifyProductInv" prefHeight="27.0" prefWidth="177.0" promptText="Inv" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets left="5.0" right="155.0" />
                </GridPane.margin>
             </TextField>
-            <TextField promptText="Price" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <TextField fx:id="modifyProductPrice" promptText="Price" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets left="5.0" right="155.0" />
                </GridPane.margin>
             </TextField>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <children>
-                  <TextField prefHeight="27.0" prefWidth="80.0" promptText="Max" />
+                  <TextField fx:id="modifyProductMax" prefHeight="27.0" prefWidth="80.0" promptText="Max" />
                   <Label text="Min" />
-                  <TextField prefHeight="27.0" prefWidth="80.0" promptText="Min" />
+                  <TextField fx:id="modifyProductMin" prefHeight="27.0" prefWidth="80.0" promptText="Min" />
                </children>
             </HBox>
          </children>
@@ -85,47 +86,52 @@
           <RowConstraints maxHeight="35.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TableView prefHeight="222.0" prefWidth="526.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
+            <TableView fx:id="partTableView" prefHeight="222.0" prefWidth="526.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
               <columns>
-                <TableColumn prefWidth="118.92755126953125" text="Part ID" />
-                <TableColumn prefWidth="126.1898193359375" text="Part Name" />
-                  <TableColumn prefWidth="143.24786376953125" text="Inventory Level" />
-                  <TableColumn prefWidth="137.2520751953125" text="Price Per Unit" />
+                <TableColumn fx:id="partId" prefWidth="118.92755126953125" text="Part ID" />
+                <TableColumn fx:id="partName" prefWidth="126.1898193359375" text="Part Name" />
+                  <TableColumn fx:id="partStock" prefWidth="143.24786376953125" text="Inventory Level" />
+                  <TableColumn fx:id="partPrice" prefWidth="137.2520751953125" text="Price Per Unit" />
               </columns>
                <GridPane.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </GridPane.margin>
             </TableView>
-            <Button mnemonicParsing="false" text="Add" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+            <Button mnemonicParsing="false" onAction="#add" text="Add" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets right="50.0" />
                </GridPane.margin></Button>
-            <TableView prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="3">
+            <TableView fx:id="stagedPartTableView" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="3">
               <columns>
-                <TableColumn prefWidth="121.29559326171875" text="Part ID" />
-                <TableColumn prefWidth="141.20437622070312" text="Part Name" />
-                  <TableColumn prefWidth="125.76800537109375" text="Inventory Level" />
-                  <TableColumn prefWidth="136.76361083984375" text="Price Per Unit" />
+                <TableColumn fx:id="stagedPartId" prefWidth="121.29559326171875" text="Part ID" />
+                <TableColumn fx:id="stagedPartName" prefWidth="141.20437622070312" text="Part Name" />
+                  <TableColumn fx:id="stagedPartStock" prefWidth="125.76800537109375" text="Inventory Level" />
+                  <TableColumn fx:id="stagedPartPrice" prefWidth="136.76361083984375" text="Price Per Unit" />
               </columns>
                <GridPane.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </GridPane.margin>
             </TableView>
-            <Button mnemonicParsing="false" text="Delete" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+            <Button mnemonicParsing="false" onAction="#delete" text="Delete" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets right="50.0" />
                </GridPane.margin></Button>
-            <Button mnemonicParsing="false" text="Save" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
+            <Button mnemonicParsing="false" onAction="#save" text="Save" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
             <Button mnemonicParsing="false" onAction="#cancel" text="Cancel" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
                <GridPane.margin>
                   <Insets right="50.0" />
                </GridPane.margin></Button>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <Button mnemonicParsing="false" text="Search" />
-                  <TextField prefHeight="27.0" prefWidth="216.0" />
+                  <Button mnemonicParsing="false" onAction="#search" text="Search" />
+                  <TextField fx:id="modifyProductSearch" prefHeight="27.0" prefWidth="216.0" />
                </children>
             </HBox>
+            <Text fx:id="errorMessage" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Products must have at least one part to be created." visible="false" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets left="150.0" />
+               </GridPane.margin>
+            </Text>
          </children>
       </GridPane>
    </children>

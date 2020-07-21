@@ -24,20 +24,13 @@ import static javafx.collections.FXCollections.observableArrayList;
 public class Software_1 extends Application {
     
     public void Software_1() {
-        System.out.println("software_1 constructor");
-        System.out.println("-------------");
+
     }
-                        
-//    public static Inventory parts = new Inventory();
-        
+                                
     public static Inventory partsInventory = new Inventory();
     
     @Override
     public void start(Stage stage) throws Exception {
-
-        System.out.println(partsInventory.getAllParts());
-        System.out.println(partsInventory.allParts.size());
-        System.out.println("///////////");
 
                
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
@@ -52,10 +45,6 @@ public class Software_1 extends Application {
      */
     public static void main(String[] args) {
         launch(args);        
-        
-        System.out.println("Sotware_1.java main run");
-        
-        System.out.println("--------------");
       
 }
 }

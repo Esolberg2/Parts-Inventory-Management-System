@@ -30,6 +30,10 @@ Part(String name, double price, int stock, int min, int max) {
         this.max = max;
     }
 
+    Part(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }
