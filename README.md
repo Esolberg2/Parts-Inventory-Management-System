@@ -1,2 +1,2 @@
-# software_1
-Book inventory management system, written in Java.
+# Parts-Inventory-Management-System
+Parts inventory management system, written in Java.
