@@ -1,2 +1,2 @@
 # software_1
-Inventory management system for C482, Software_1
+Book inventory management system, written in Java.
